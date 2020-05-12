@@ -18,9 +18,7 @@ app.use(bodyParser.json());
 // routes
 app.post('/jobs', async (req, res) => {
     if (req.body.url) {
-        const job = await processQueue.add({url: req.body.url}, {
-            
-        });
+        const job = await processQueue.add({url: req.body.url});
         res.status(HttpStatus.Ok).json({jobId: job.id});
     } else {
         res.status(HttpStatus.BadRequest).json({error: "missing url parameter"});
